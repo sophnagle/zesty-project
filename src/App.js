@@ -60,13 +60,16 @@ const App = () => {
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
-        {images.map((imageURL) => (
+        {images.map((imageURL, index) => (
           <img
             alt=""
             key={imageURL}
             src={imageURL}
             onClick={handleClick}
             onLoad={handleImageLoad}
+            // to order the images correctly
+            //style={{ opacity: currentImage === index ? 1 : 0 }}
+            className={currentImage === index ? "display" : "hide"}
           />
         ))}
       </figure>
