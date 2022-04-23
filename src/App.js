@@ -38,6 +38,9 @@ const App = () => {
       </div>
 
       <div className="image-container">
+        <h3>
+          {currentImage + 1} / {images.length}
+        </h3>
         <img alt="" src={images[currentImage]} onClick={handleClick} />
       </div>
     </div>
