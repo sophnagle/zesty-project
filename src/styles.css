@@ -57,3 +57,33 @@ img {
   position: fixed;
   width: 50%;
 }
+
+aside {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: #e8e8e8;
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-bar {
+  display: grid;
+  grid-row-gap: 12px;
+}
+
+progress {
+  border: solid 1px #294910;
+  height: 20px;
+  width: 400px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background: #e8e8e8;
+}
+
+progress[value]::-webkit-progress-value {
+  background: #294910;
+}

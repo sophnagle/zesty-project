@@ -9,6 +9,17 @@ import avocado from "./assets/image6.jpeg";
 
 const images = [cabbage, mango, fig, gaze, peach, avocado];
 
+const Loading = () => (
+  <aside>
+    <div className="loading-bar">
+      <label htmlFor="images-loaded">
+        Loading all your favourite images...
+      </label>
+      <progress id="images-loaded" max="100" value="50"></progress>
+    </div>
+  </aside>
+);
+
 const App = () => {
   // State hook and Event to set loop for images
   const [currentImage, setCurrentImage] = useState(0);
@@ -38,6 +49,7 @@ const App = () => {
       </header>
 
       <figure>
+        <Loading />
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
