@@ -9,13 +9,13 @@ import avocado from "./assets/image6.jpeg";
 
 const images = [cabbage, mango, fig, gaze, peach, avocado];
 
-const Loading = () => (
+const Loading = ({ calculatedWidth }) => (
   <aside>
     <div className="loading-bar">
       <label htmlFor="images-loaded">
         Loading all your favourite images...
       </label>
-      <progress id="images-loaded" max="100" value="50"></progress>
+      <progress id="images-loaded" max="100" value={calculatedWidth}></progress>
     </div>
   </aside>
 );
@@ -23,6 +23,7 @@ const Loading = () => (
 const App = () => {
   // State hook and Event to set loop for images
   const [currentImage, setCurrentImage] = useState(0);
+  const [numLoaded, setNumLoaded] = useState(0);
 
   const handleClick = () => {
     const length = images.length - 1;
@@ -39,6 +40,10 @@ const App = () => {
     });
   };
 
+  const handleImageLoad = () => {
+    setNumLoaded((numLoaded) => numLoaded + 1);
+  };
+
   return (
     <section>
       <header>
@@ -49,11 +54,21 @@ const App = () => {
       </header>
 
       <figure>
-        <Loading />
+        {numLoaded < images.length && (
+          <Loading calculatedWidth={(numLoaded / images.length) * 100} />
+        )}
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
-        <img alt="" src={images[currentImage]} onClick={handleClick} />
+        {images.map((imageURL) => (
+          <img
+            alt=""
+            key={imageURL}
+            src={imageURL}
+            onClick={handleClick}
+            onLoad={handleImageLoad}
+          />
+        ))}
       </figure>
     </section>
   );
